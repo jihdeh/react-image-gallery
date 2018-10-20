@@ -1,9 +1,10 @@
 {
-  "name": "react-image-gallery",
-  "version": "0.8.14",
+  "name": "react-image-gallery-nx",
+  "version": "0.8.15",
   "description": "React carousel image gallery component with thumbnail and mobile support",
   "main": "./build/image-gallery.js",
   "scripts": {
+    "prepublishOnly": "npm run build",
     "start": "gulp dev",
     "build": "gulp build",
     "lint": "eslint --ext .js,.jsx src"
