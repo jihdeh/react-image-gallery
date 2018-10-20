@@ -151,6 +151,7 @@ export default class ImageGallery extends React.Component {
       );
     },
     renderFullscreenButton: (onClick, isFullscreen) => {
+      console.log(isFullscreen, '-as')
       return (
         <button
           type='button'
@@ -957,6 +958,11 @@ export default class ImageGallery extends React.Component {
     }
   };
 
+  _onLightboxModalClose = () => {
+    this.setState({isFullscreen: false})
+    this.setModalFullscreen(false)
+  }
+
   render() {
     const {
       currentIndex,
@@ -1165,7 +1171,7 @@ export default class ImageGallery extends React.Component {
             mainSrc={this.props.items[currentIndex].original}
             nextSrc={this.props.items[(currentIndex + 1) % this.props.items.length].original}
             prevSrc={this.props.items[(currentIndex + this.props.items.length - 1) % this.props.items.length].original}
-            onCloseRequest={() => this.setModalFullscreen(false)} // eslint-disable-line
+            onCloseRequest={() => this._onLightboxModalClose()} // eslint-disable-line
             onMovePrevRequest={slideLeft}
             onMoveNextRequest={slideRight}
           />
