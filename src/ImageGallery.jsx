@@ -2,6 +2,7 @@ import React from 'react';
 import Swipeable from 'react-swipeable';
 import throttle from 'lodash.throttle';
 import debounce from 'lodash.debounce';
+import Lightbox from 'react-image-lightbox';
 import ResizeObserver from 'resize-observer-polyfill';
 import PropTypes from 'prop-types';
 
@@ -1150,8 +1151,7 @@ export default class ImageGallery extends React.Component {
 
     const classNames = [
       'image-gallery',
-      this.props.additionalClass,
-      modalFullscreen ? 'fullscreen-modal' : '',
+      this.props.additionalClass
     ].filter(name => typeof name === 'string').join(' ');
 
     return (
@@ -1160,6 +1160,16 @@ export default class ImageGallery extends React.Component {
         className={classNames}
         aria-live='polite'
       >
+        {modalFullscreen && (
+          <Lightbox
+            mainSrc={this.props.items[currentIndex].original}
+            nextSrc={this.props.items[(currentIndex + 1) % this.props.items.length].original}
+            prevSrc={this.props.items[(currentIndex + this.props.items.length - 1) % this.props.items.length].original}
+            onCloseRequest={() => this.setModalFullscreen(false)} // eslint-disable-line
+            onMovePrevRequest={slideLeft}
+            onMoveNextRequest={slideRight}
+          />
+        )}
 
         <div
           className={`image-gallery-content${isFullscreen ? ' fullscreen' : ''}`}

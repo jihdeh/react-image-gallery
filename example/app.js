@@ -206,6 +206,7 @@ class App extends React.Component {
           showIndex={this.state.showIndex}
           showNav={this.state.showNav}
           isRTL={this.state.isRTL}
+          useBrowserFullscreen={false}
           thumbnailPosition={this.state.thumbnailPosition}
           slideDuration={parseInt(this.state.slideDuration)}
           slideInterval={parseInt(this.state.slideInterval)}
